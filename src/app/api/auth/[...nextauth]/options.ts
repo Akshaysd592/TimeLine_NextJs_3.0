@@ -9,7 +9,7 @@ export const authOptions : NextAuthOptions = {
    providers:[
         CredentialsProvider({ // creadential are created so that there is a formation of page for this provided value such as github based login
             id:"credentials",
-            name:"Credentails",
+            name:"Credentials",
             credentials:{ // for html form created automatically by next-auth
                 email : {label:"Email",type:"text"},
                 password:{password:"password",type:"password"}

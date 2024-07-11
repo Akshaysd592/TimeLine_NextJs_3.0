@@ -47,7 +47,7 @@ export default function SignIn() {
       })
      }
      if(result?.url){
-      router.replace('/dashboard')
+      router.replace('/')
      }
      
     setIsSubmitting(false);

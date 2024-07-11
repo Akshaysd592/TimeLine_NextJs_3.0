@@ -14,6 +14,7 @@ export async function GET(request  : Request){
     const user : User = session?.user as User
 
     if(!session || !session.user){
+        console.log("inside not authorized")
         return Response.json({
             success:false,
             message:"Not Authenticated",

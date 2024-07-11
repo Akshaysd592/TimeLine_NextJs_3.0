@@ -75,7 +75,7 @@ export async function GET(request:Request){
     if(!session || !session.user){
         return Response.json({
             success:false,
-            message:"Not Authenticated"
+            message:"Not Authenticated in accept message"
         },{status:401})
     }
 
