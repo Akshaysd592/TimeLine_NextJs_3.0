@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import dayjs from 'dayjs'
 import {
     AlertDialog,
     AlertDialogAction,
@@ -27,18 +28,18 @@ import { Message } from "@/model/User.model";
 
 import axios, { AxiosError } from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
-import { Toast } from "@radix-ui/react-toast";
+
 import { useToast } from "./ui/use-toast";
 
   
 type MessageCardProps = {
     message: Message
-    onMessageDelete : (methodId: string)=> void // type method
+    onMessageDelete : (messageId: string)=> void // type method
 
 }
 
 
-function MessageCard({message,onMessageDelete}:MessageCardProps) {
+export function MessageCard({message,onMessageDelete}:MessageCardProps) {
     const {toast} = useToast()
 
     const handleDeleteConfirm  = async()=>{
@@ -49,7 +50,8 @@ function MessageCard({message,onMessageDelete}:MessageCardProps) {
             title: response.data.message
           })
     
-          onMessageDelete(`${message._id}`)
+          onMessageDelete(`${message._id}`);
+          // onMessageDelete(message._id)
 
 
     } catch (error) {
@@ -59,7 +61,8 @@ function MessageCard({message,onMessageDelete}:MessageCardProps) {
 
         toast({
             title:"Error in messsageCard",
-            description: errorMessage
+            description: errorMessage ?? 'Failed to delete Message',
+            variant:'destructive'
         })
         
     }
@@ -72,9 +75,10 @@ function MessageCard({message,onMessageDelete}:MessageCardProps) {
 
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
+    <Card className="card-bordered ">
+      <CardHeader >
+        <div className="flex justify-center items-center ">
+        <CardTitle>{message.content}</CardTitle>
         <AlertDialog>
 
       <AlertDialogTrigger asChild>
@@ -97,7 +101,10 @@ function MessageCard({message,onMessageDelete}:MessageCardProps) {
       </AlertDialogContent>
     </AlertDialog>
 
-        <CardDescription>Card Description</CardDescription>
+        </div>
+        <div>
+          {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}
+        </div>
       </CardHeader>
       <CardContent></CardContent>
       <CardFooter></CardFooter>

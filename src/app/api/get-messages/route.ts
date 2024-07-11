@@ -28,10 +28,10 @@ export async function GET(request  : Request){
 
     try {
         const user =await UserModel.aggregate([
-            {  $match:{id:userId} },
+            {  $match:{_id:userId} },
             {  $unwind:'$messages' }, // messages will be an array so need individual item of the array for provided id 
             {  $sort: {'messages.createdAt':-1 }},
-            {  $group:{_id : '$_id', messages:{$push:'messages'}}} // creating single object with same id and multiple messages in it 
+            {  $group:{_id : '$_id', messages:{$push:'$messages'}}} // creating single object with same id and multiple messages in it 
 
         ])
 

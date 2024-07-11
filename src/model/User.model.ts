@@ -3,7 +3,7 @@ import mongoose ,{Schema, Document } from "mongoose";
 
 export interface Message extends Document { // interface creation which uses Document
     content: string; // in interface small lettered 
-    createdAt: Date 
+    createdAt: Date ;
 }
 
 

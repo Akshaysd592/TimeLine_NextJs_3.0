@@ -5,7 +5,7 @@ import { DefaultSession } from 'next-auth';
  // here can't use interface because we are modifing next-auth framework structure
 declare module 'next-auth'{
     interface User{
-        _id : string;
+        _id? : string;
         isVerified?: boolean;
         isAcceptingMessages?:boolean;
         username?:string

@@ -36,7 +36,7 @@ export const authOptions : NextAuthOptions = {
                         throw new Error("Please verify your account before login")
                     }
 
-                  const isPasswordCorrect =   await bcrypt.compare(credentials.password,user.password)
+                  const isPasswordCorrect =   await bcrypt.compare(credentials.password, user.password)
 
                   if(isPasswordCorrect){
                     return user // according to documentation
@@ -61,7 +61,7 @@ export const authOptions : NextAuthOptions = {
                 token.username  = user.username
             }
 
-            return token 
+            return token ;
          },
         async session({ session, token }) {
 
@@ -79,9 +79,9 @@ export const authOptions : NextAuthOptions = {
         signIn:'/sign-in'
     },
     session:{
-        strategy:"jwt"
+        strategy:'jwt'
     },
     secret: process.env.NEXTAUTH_SECRET,
 
     
-}
+};
