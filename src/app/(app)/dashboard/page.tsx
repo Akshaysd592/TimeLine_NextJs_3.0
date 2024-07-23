@@ -27,7 +27,9 @@ function UserDashboard() {
     setMessages(messages.filter((message) => message._id !== messageId));
   };
 
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
+  const { data: session } = useSession(); // you can no access data related to user directly from session , can be accessed from userSession
+  const user: User = session?.user as User;
 
   const form = useForm({
     resolver: zodResolver(acceptMessageValidation),
@@ -39,7 +41,7 @@ function UserDashboard() {
   const fetchAcceptMessages = useCallback(async () => {
     setIsSwitchLoading(true);
     try {
-      const response = await axios.get<ApiResponse>("/api/accept-messages");
+      const response = await axios.get<ApiResponse>("/api/accept-message");
       setValue("acceptMessages", response.data.isAcceptingMessages);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
@@ -60,8 +62,9 @@ function UserDashboard() {
       setIsLoading(true);
       setIsSwitchLoading(false);
       try {
-        const response = await axios.get<ApiResponse>("/api/get-messages");
+        const response = await axios.get("/api/get-messages");
         setMessages(response.data.messages || []);
+        console.log(response)
         if (refresh) {
           toast({
             title: "Refreshed Messages",
@@ -96,7 +99,7 @@ function UserDashboard() {
   // Handle switch change
   const handleSwitchChange = async () => {
     try {
-      const response = await axios.post<ApiResponse>("/api/accept-messages", {
+      const response = await axios.post<ApiResponse>("/api/accept-message", {
         acceptMessages: !acceptMessages,
       });
       setValue("acceptMessages", !acceptMessages);

@@ -12,7 +12,7 @@ export const authOptions : NextAuthOptions = {
             name:"Credentials",
             credentials:{ // for html form created automatically by next-auth
                 email : {label:"Email",type:"text"},
-                password:{password:"password",type:"password"}
+                password:{label:"password",type:"password"}
             },
             async authorize(credentials:any):Promise<any>{
                 await dbConnect();

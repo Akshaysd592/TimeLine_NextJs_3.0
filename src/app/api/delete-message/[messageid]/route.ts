@@ -33,7 +33,7 @@ export async function DELETE(request: Request, {params}:{params:{messageid:strin
           if(updatedResult.modifiedCount == 0){
                return Response.json({
                     success:false,
-                    message: "Message not founde or already delete"
+                    message: "Message not found or already delete"
                },{
                     status: 404
                })
