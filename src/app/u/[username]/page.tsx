@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import React from "react";
 import * as z from "zod";
@@ -30,7 +30,7 @@ import { ApiResponse } from "@/types/ApiResponse";
 
 
 
-function page() {
+function FeedBack() {
   const params = useParams<{ username: string }>();
   const {toast} = useToast();
 
@@ -129,4 +129,4 @@ function page() {
   );
 }
 
-export default page;
+export default FeedBack;
