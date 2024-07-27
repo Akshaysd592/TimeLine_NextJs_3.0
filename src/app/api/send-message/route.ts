@@ -39,12 +39,12 @@ export async function POST(request: Request){
 
        
         
-    } catch (error) {
+    } catch (error:any) {
         console.log("An unexpected error occured while sending message",error)
 
         return Response.json({
             success:false,
-            message:"An unexpected error occured while sending message",
+            message:error.message
         },{
             status:500
         })

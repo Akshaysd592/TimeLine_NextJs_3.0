@@ -12,8 +12,8 @@ export async function sendVerificationEmail(
 ):Promise<ApiResponse>{ // this means need to return the data similar to ApiResponse type
     try {
         const emailResponse = await resend.emails.send({
-            from: 'akshaypro155@gmail.com',
-            to: email,
+            from: "Acme <onboarding@resend.dev>",
+            to: [email],
             subject: "Inline | Verification Email",
             react: VerificationEmail({username,otp:verifyCode}),
           });

@@ -63,8 +63,9 @@ export async function POST(request : Request){
        }else{
                 // here new user , so store its values and send mail with otp for verification
                 const hashedPassword =  await bcrypt.hash(password,10)
-                const expiryDate = new Date(); 
-                expiryDate.setHours(expiryDate.getHours()+1) // adding 1 hr for expiry
+                const expiryDate = new Date(Date.now()+ 3600000); 
+                // expiryDate.setHours(expiryDate.getHours()+1) // adding 1 hr for expiry
+                
 
             const newUser =   new UserModel({
                     username,
@@ -83,6 +84,7 @@ export async function POST(request : Request){
             // sending mail for verification with otp 
 
             const emailResponse = await  sendVerificationEmail(email,username,verifyCode)
+            console.log(emailResponse)
 
             if(!emailResponse.success){ // if email not sent successfully
                 return Response.json({

@@ -4,7 +4,7 @@ import React from "react";
 import * as z from "zod";
 import { messageSchema } from "@/schemas/messageSchema";
 import axios, { AxiosError } from "axios";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useForm  } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/components/ui/use-toast";
@@ -30,9 +30,11 @@ import { ApiResponse } from "@/types/ApiResponse";
 
 
 
+
 function FeedBack() {
   const params = useParams<{ username: string }>();
   const {toast} = useToast();
+   const router = useRouter();
 
     const {resetField} = useForm()
 
@@ -48,18 +50,24 @@ function FeedBack() {
         console.log(username,content)
 
         let validatedContent = content.trim();
-        if(!validatedContent){
+        if(validatedContent.length === 0){
           toast({
             title:"No content Provided",
             description:"Please, Provide some content"
           })
+          return ;
+          
         }
 
-        const response =  await axios.post('/api/send-message',{
-           username,
-           content
 
-        })
+          const response =  await axios.post('/api/send-message',{
+            username,
+            content
+         })
+
+        
+
+        
 
         // console.log(response);
         // if(response? === "User is not accepting the messages"){
@@ -72,6 +80,7 @@ function FeedBack() {
           })
 
           resetField("content")
+          router.replace(`/greet/${username}`)
   
         }
 
@@ -106,7 +115,7 @@ function FeedBack() {
             control={form.control}
             name="content"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="mr-4 ">
                 <FormLabel>Feed-Back</FormLabel>
                 <FormControl>
                   <Textarea
