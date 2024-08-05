@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { User } from "next-auth"; // this User will include session and token
 import { Button } from "./ui/button";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 function Navbar() {
   // according to documentation
@@ -14,9 +15,14 @@ function Navbar() {
   return (
     <nav className="p-4 md:p-6 shadow-md flex  flex-row w-full ">
       <div className=" flex w-full  flex-col sm:flex-row justify-between items-center">
-        <a className="text-center text-xl font-bold mb-4 md:mb-0 " href="#">
-          GetLine Mystry Message{" "}
+        <div className=" flex flex-row gap-4  ">
+        <a className="text-center text-sm font-bold mb-4 md:mb-0  sm:text-xl md:text-2xl" href="#">
+          GetLine {" "}
         </a>
+        <ThemeSwitcher />
+        </div>
+      
+      
         <div>
           <div>
             {session ? (

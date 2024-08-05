@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import { useScroll, useTransform } from "framer-motion";
 
 // this is an  Home
 import {
@@ -14,57 +15,68 @@ import Autoplay from 'embla-carousel-autoplay'
 import messages from '@/message.json'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Mail } from 'lucide-react'
+import { HeroHighlight, Highlight } from '@/components/ui/hero-highlight'
+import { motion } from "framer-motion";
+import { GoogleGeminiEffect } from '@/components/ui/google-gemini-effect';
 
 function Home() {
+  const ref = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+ 
+  const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
+  const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
+  const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2]);
+  const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
+  const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
+  
   return (
   <>
-  
-    <main className='flex-grow flex flex-col items-center justify-center  px-4 md:px-24 py-12 bg-gray-800 text-white h-screen'>
-      <section className='text-center mb-8 md:mb-12 '>
-      <h1 className='text-3xl md:text-5xl font-bold'>
-        Dive Into the world on Anonymous Feedback on GetLine
-      </h1>
-      <p className='mt-3 md:mt-4 text-base md:text-lg'>True Feedback - Where your Identity remains a secret</p>
-      </section>
-
-
-      <div className='w-80 max-h-52 min-h-56 md:min-w-fit md:min-h-72  pl-4'>
-      <Carousel
-      plugins={[Autoplay({delay:2000})]}
-      className=''
+    <HeroHighlight>
+      <motion.h1
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: [20, -5, 0],
+        }}
+        transition={{
+          duration: 0.5,
+          ease: [0.4, 0.0, 0.2, 1],
+        }}
+        className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
       >
-        <CarouselContent>
-          {messages.map((message,index)=>(
-            <CarouselItem key={index} className='p-4'>
-              <Card>
-                <CardHeader>
-                   <CardTitle>
-                    {message.title}
-                   </CardTitle>
-                </CardHeader>
-                <CardContent className='flex flex-col md:flex-row  space-y-2 md:space-x-4 '>
-                  <Mail className='flex-shrink-0'/>
-                    <div>
-                      <p>{message.content}</p>
-                      <p className='text-xs text-muted-foreground'>
-                        {message.received}
-                      </p>
-                    </div>
-
-
-                </CardContent>
-              </Card>
-
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        
-      </Carousel>
-      </div>
-    </main>
-
-    <footer className='text-center p-4 md:p-6 bg-gray-900 text-white'>
-      @2024 GetLine True Feedback . All rights reserved 
+        With GetLine,you can make development easier and smarter. Get faster {" "}
+        <Highlight className="text-black dark:text-white">
+          Feedbacks, 1Reviews and Updates.
+        </Highlight>
+      </motion.h1>
+    </HeroHighlight>
+    <div
+       className="h-[400vh]  w-full bg-black dark:border dark:border-white/[0.1] rounded-md relative  overflow-clip"
+      ref={ref}
+      >
+      <GoogleGeminiEffect
+        pathLengths={[
+          pathLengthFirst,
+          pathLengthSecond,
+          pathLengthThird,
+          pathLengthFourth,
+          pathLengthFifth,
+        ]}
+        title='Get Instant Feedback '
+        description='You can get feed-back from your client by creating your account and generating unique URL.'
+        className='pt-3 '
+      />
+    </div>
+    
+    
+    <footer className='text-center p-4 md:p-6 dark:bg-gray-900 border-t-gray-400 border-t-4'>
+      @2024 GetLine True Feedback By Akshay Dhobale . All rights reserved 
     </footer>
    
     </>
