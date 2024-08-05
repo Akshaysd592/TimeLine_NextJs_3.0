@@ -1,10 +1,9 @@
-
 'use client';
 
 import { useParams } from 'next/navigation'
 import React from 'react'
 
-function page() {
+function Feedback() {
     const params = useParams<{username:string}>()
   return (
     <div className='flex flex-col items-center justify-center min-h-screen '>
@@ -14,4 +13,4 @@ function page() {
   )
 }
 
-export default page
+export default Feedback

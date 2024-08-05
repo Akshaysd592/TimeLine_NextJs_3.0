@@ -91,14 +91,14 @@ export async function GET(request: Request) {
   const userId = new mongoose.Types.ObjectId(_user._id);
   console.log(userId)
   try {
-    const user = await UserModel.findById(userId)
+    // const user = await UserModel.findById(userId)
     
-//   const user = await UserModel.aggregate([
-//       { $match: { _id: userId } },
-//       { $unwind: '$messages' },
-//       { $sort: { 'messages.createdAt': -1 } },
-//       { $group: { _id: '$_id', messages: { $push: '$messages' } } },
-//     ]).exec();
+  const user = await UserModel.aggregate([
+      { $match: { _id: userId } },
+      { $unwind: '$messages' },
+      { $sort: { 'messages.createdAt': -1 } },
+      { $group: { _id: '$_id', messages: { $push: '$messages' } } },
+    ]).exec();
 
     console.log(user)
     if (!user ) {
@@ -109,7 +109,7 @@ export async function GET(request: Request) {
     }
 
     return Response.json(
-      { messages: user.messages.sort()},
+      { messages: user[0].messages},
       {
         status: 200,
       }

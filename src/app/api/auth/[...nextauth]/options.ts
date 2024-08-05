@@ -53,7 +53,7 @@ export const authOptions : NextAuthOptions = {
     ],
     callbacks:{ // here user will be proveded from providers/credentails
         async jwt({ token, user }) { // token will have only id but we want more things to be stored in token so 
-                                    // costumising its structure inside types/next-auth.ts and also store same data in session also
+                                    // custumising its structure inside types/next-auth.ts and also store same data in session also
             if(user){ // changed structure like types/next-auth.d.ts for this storage of data 
                 token._id = user._id?.toString()
                 token.isVerified = user.isVerified
