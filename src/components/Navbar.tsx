@@ -9,14 +9,22 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import MoveDashboard from "./NavigateButton";
 import { useParams, usePathname } from "next/navigation";
 import NavigateButton from "./NavigateButton";
+import { useToast } from "./ui/use-toast";
 
 function Navbar() {
+  const {toast} = useToast();
   const pathname = usePathname()
   
   // according to documentation
   const { data: session } = useSession(); // you can no access data related to user directly from session , can be accessed from userSession
   const user: User = session?.user as User; // if variable not accepting data due to typescipt then use => as dat
-
+   function signOutnow(){
+    
+    signOut();// just call signOut function all session and localstorage get removed
+    toast({
+      title:"Signed Out..."
+    })
+   }
   return (
     <nav className="p-4 md:p-6 shadow-md flex border-[4px] flex-row w-full ">
       <div className=" flex w-full  flex-col sm:flex-row justify-between items-center">
@@ -28,9 +36,9 @@ function Navbar() {
         
         
         </div>
-        {  (session)?
+        {   (pathname=='/' && session)?
             <NavigateButton text={"Dashboard"} linkto="/dashboard"/>:
-            ""
+            ((pathname=='/dashboard')?<NavigateButton text={"Home"} linkto="/"/>:"")
             
         }
           <div>
@@ -41,7 +49,7 @@ function Navbar() {
                <span className="mr-4 ">
                   Welcome, {user.username || user.email}
                 </span>
-                <Button className="w-full md:w-auto " onClick={() => signOut()}>
+                <Button className="w-full md:w-auto " onClick={() => signOutnow()}>
                   Logout
                 </Button>
                </div>

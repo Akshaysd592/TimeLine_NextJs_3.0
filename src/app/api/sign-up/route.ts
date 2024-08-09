@@ -79,21 +79,22 @@ export async function POST(request : Request){
                     isAcceptingMessages:true,
                     message:[] // initially empty
                 })
-
+                console.log(newUser.verifyCode);
                 await newUser.save()
        }
 
             // sending mail for verification with otp 
 
-            // const emailResponse = await  sendVerificationEmail(email,username,verifyCode)
-            const emailResponse = await mailSender(email,username,verifyCode);
+            // const emailResponse = await  sendVerificationEmail(email, username,verifyCode)
+            const emailResponse = await mailSender({email, username,verifyCode});
+            
 
-            console.log(emailResponse)
+            // console.log(emailResponse , "mail sent ")
 
-            if(!emailResponse.success){ // if email not sent successfully
+            if(!emailResponse.accepted){ // if email not sent successfully
                 return Response.json({
                     success:false,
-                    message: emailResponse.message
+                    message: "Email not send due to some issue .."
                 },{
                     status:500
                 })

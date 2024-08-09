@@ -72,7 +72,7 @@ export default function SignUp() {
               setIsSubmitting(true)
               try {
             const response = await axios.post<ApiResponse>('/api/sign-up', data)
-            console.log(response);
+            // console.log(response, "no error-------------------------------------- ");
             toast({
               title:'Success',
               description: response.data.message
@@ -101,7 +101,7 @@ export default function SignUp() {
   return (
     <div  className="flex justify-center items-center min-h-screen bg-gray-900">
 
-      <div className='w-full max-w-md p-8 space-y-8 bg-gray-400 rounded-lg shadow-md'>
+      <div className='w-full max-w-md p-8 space-y-8 bg-gray-400 dark:text-black rounded-lg shadow-md'>
         <div className='text-center'>
            <h1 className='text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 '>
             Join Mystery Message GetLine
