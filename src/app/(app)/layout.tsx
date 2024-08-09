@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     
       <div>
-        <ThemeProvider attribute="class" defaultTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="Dark" >
         <Navbar/>
         {children}
         </ThemeProvider>

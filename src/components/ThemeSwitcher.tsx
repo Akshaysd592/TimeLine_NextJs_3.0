@@ -35,7 +35,7 @@ function ThemeSwitcher() {
       <HoverBorderGradient
         containerClassName="rounded-full"
         as="button"
-        className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
+        className="dark:bg-black bg-white text-black dark:text-white border-b-slate-600  flex items-center space-x-2"
       >
          
         {

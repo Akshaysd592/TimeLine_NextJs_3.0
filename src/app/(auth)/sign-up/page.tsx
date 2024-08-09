@@ -72,7 +72,7 @@ export default function SignUp() {
               setIsSubmitting(true)
               try {
             const response = await axios.post<ApiResponse>('/api/sign-up', data)
-
+            console.log(response);
             toast({
               title:'Success',
               description: response.data.message
@@ -132,7 +132,7 @@ export default function SignUp() {
                 {
                   isCheckingUsername && <Loader2 className='animate-spin'/>
                 }
-               <p className={`text-sm ${usernameMessage === "Username is unique"? 'text-green-500':'text-red-500'}`}>
+               <p className={`text-sm ${usernameMessage === "Username is unique"? 'text-gray-900':'text-red-500'}`}>
                 {usernameMessage}
                </p>
 

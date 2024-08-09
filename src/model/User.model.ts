@@ -10,7 +10,7 @@ export interface Message extends Document { // interface creation which uses Doc
 const MessageSchema : Schema<Message> = new Schema({
     content:{
         type:String, // in mongoose capitalized string
-        required:true
+        required:[true,"Please provide some content.."]
     },
     createdAt:{
         type:Date,
