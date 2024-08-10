@@ -1,6 +1,8 @@
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User.model";
 import { sendVerificationEmail } from "@/helper/sendVerificationEmail";
+import { mailSender } from "@/helper/mailSender";
+
 
 import bcrypt from 'bcryptjs'
 
@@ -51,7 +53,7 @@ export async function POST(request : Request){
                 // const expiryDate = new Date()
                 // expiryDate.setHours(expiryDate.getHours()+1);
                 // existingUserByEmail.verifyCodeExpiry = expiryDate //or
-                existingUserByEmail.verifyCodeExpiry  = new Date(Date.now() * 3600000)
+                existingUserByEmail.verifyCodeExpiry  = new Date(Date.now() + 3600000)
 
 
                 await existingUserByEmail.save()
@@ -63,7 +65,7 @@ export async function POST(request : Request){
        }else{
                 // here new user , so store its values and send mail with otp for verification
                 const hashedPassword =  await bcrypt.hash(password,10)
-                const expiryDate = new Date(Date.now()+ 3600000); 
+                const expiryDate = new Date(Date.now() + 3600000); 
                 // expiryDate.setHours(expiryDate.getHours()+1) // adding 1 hr for expiry
                 
 
@@ -77,19 +79,22 @@ export async function POST(request : Request){
                     isAcceptingMessages:true,
                     message:[] // initially empty
                 })
-
+                console.log(newUser.verifyCode);
                 await newUser.save()
        }
 
             // sending mail for verification with otp 
 
-            const emailResponse = await  sendVerificationEmail(email,username,verifyCode)
-            console.log(emailResponse)
+            // const emailResponse = await  sendVerificationEmail(email, username,verifyCode)
+            const emailResponse = await mailSender({email, username,verifyCode});
+            
 
-            if(!emailResponse.success){ // if email not sent successfully
+            // console.log(emailResponse , "mail sent ")
+
+            if(!emailResponse.accepted){ // if email not sent successfully
                 return Response.json({
                     success:false,
-                    message: emailResponse.message
+                    message: "Email not send due to some issue .."
                 },{
                     status:500
                 })

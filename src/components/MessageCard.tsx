@@ -82,8 +82,8 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            This action cannot be undone. This will permanently delete 
+             message and can not be recovered.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -93,7 +93,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
           >Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
-    </AlertDialog>
+       </AlertDialog>
 
         </div>
       </CardHeader>
