@@ -100,7 +100,8 @@ function UserDashboard() {
   const handleSwitchChange = async () => {
     try {
       const response = await axios.post<ApiResponse>("/api/accept-message", {
-        acceptingMessage: !acceptMessages,
+        acceptMessages: !acceptMessages,
+        
       });
       setValue("acceptMessages", !acceptMessages);
       toast({
