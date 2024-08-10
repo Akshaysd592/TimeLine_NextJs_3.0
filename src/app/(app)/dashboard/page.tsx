@@ -101,6 +101,7 @@ function UserDashboard() {
     try {
       const response = await axios.post<ApiResponse>("/api/accept-message", {
         acceptMessages: !acceptMessages,
+        
       });
       setValue("acceptMessages", !acceptMessages);
       toast({
