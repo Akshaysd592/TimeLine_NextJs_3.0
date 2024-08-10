@@ -13,7 +13,7 @@ function FeedBackGreet() {
        <div className='flex flex-col items-center justify-center p-4 flex-wrap content-center bg-gray-800 text-white text-2xl h-52  '>
         <p>Hey, Thanks for your </p>
         <FlipWords className='text-blue-200' words={message} /> 
-        <p className='text-xl'> This will help our organizations to improve our Service.   </p>
+        <p className='text-xl'> This will help our organizations to improve our Service and Products.   </p>
        </div>
     </div>
   )
