@@ -2,6 +2,7 @@
 import { useTheme } from 'next-themes';
 import React, { useEffect, useState } from 'react'
 import { HoverBorderGradient } from './ui/hover-border-gradient';
+import {Moon, Sun} from "lucide-react"
 
 function ThemeSwitcher() {
     const [mount ,setMount] = useState(false)
@@ -35,11 +36,11 @@ function ThemeSwitcher() {
       <HoverBorderGradient
         containerClassName="rounded-full"
         as="button"
-        className="dark:bg-black bg-white text-black dark:text-white border-b-slate-600  flex items-center space-x-2"
+        className="dark:bg-black bg-white text-black dark:text-white border-b-slate-600  flex items-center p-1 m-1"
       >
          
         {
-            (theme == 'dark')? (<span>Light Mode</span>):(<span>Dark Mode</span>)
+            (theme == 'dark')? (<span><Sun/> </span>):(<span><Moon/></span>)
         }
          
         

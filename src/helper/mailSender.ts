@@ -22,9 +22,9 @@ export const mailSender = async ({ email, username, verifyCode }: emailParams) =
     console.log(htmlcontent);
 
     let info = await transporter.sendMail({
-      from: `" GetLine" <${process.env.MAIL_USER}>`, // sender address
+      from: `" TimeLine" <${process.env.MAIL_USER}>`, // sender address
       to: `${email}`, // list of receivers
-      subject: "Getline | Verification Email", // Subject line
+      subject: "Timeline Verification Email", // Subject line
       html: `<!DOCTYPE html>
 	<html>
 	

@@ -64,7 +64,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
   };
 
   return (
-    <Card className="caret-gray-600 border-slate-800   ">
+    <Card className="caret-gray-600 border-slate-800  dark:bg-white dark:text-black ">
       <CardHeader className="flex flex-row items-center justify-between " >
         <div>
           <div className="">

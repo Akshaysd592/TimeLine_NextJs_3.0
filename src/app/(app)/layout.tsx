@@ -21,8 +21,8 @@ export default function RootLayout({
     
   return (
     
-      <div>
-        <ThemeProvider attribute="class" defaultTheme="Dark" >
+      <div className="min-w-full">
+        <ThemeProvider attribute="class" defaultTheme="dark" >
         <Navbar/>
         {children}
         </ThemeProvider>

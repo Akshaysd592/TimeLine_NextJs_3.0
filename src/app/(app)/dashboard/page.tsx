@@ -138,7 +138,7 @@ function UserDashboard() {
   };
 
   return (
-    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 rounded w-full content-center max-w-6xl">
+    <div className="my-8 md:mx-auto p-6 rounded w-full content-center max-w-6xl">
       <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
 
       <div className="mb-4">
@@ -148,7 +148,7 @@ function UserDashboard() {
             type="text"
             value={profileUrl}
             disabled
-            className="input input-bordered w-full p-2 mr-2 border-[3px] border-gray-500"
+            className="input text-[13px] sm:text-[19px] input-bordered w-full p-2 mr-2 border-[3px] border-gray-500"
           />
           <Button onClick={copyToClipboard}>Copy</Button>
         </div>
@@ -168,7 +168,7 @@ function UserDashboard() {
       <Separator />
 
       <Button
-        className="mt-4"
+        className="mt-4 border-[2px] border-black dark:border-white"
         variant="outline"
         onClick={(e) => {
           e.preventDefault();

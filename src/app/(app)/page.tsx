@@ -50,14 +50,14 @@ function Home() {
         }}
         className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
       >
-        With GetLine,you can make development easier and smarter. Get faster {" "}
+        With TimeLine,you can make development easier and smarter. Get faster {" "}
         <Highlight className="text-black dark:text-white">
-          Feedbacks, 1Reviews and Updates.
+          Feedbacks, Reviews and Updates.
         </Highlight>
       </motion.h1>
     </HeroHighlight>
     <div
-       className="h-[400vh]  w-full bg-black dark:border dark:border-white/[0.1] rounded-md relative  overflow-clip"
+       className="h-[400vh]  w-full bg-gray-800 dark:bg-black dark:border dark:border-white/[0.1] rounded-md relative  overflow-clip"
       ref={ref}
       >
       <GoogleGeminiEffect
@@ -70,13 +70,13 @@ function Home() {
         ]}
         title='Get Instant Feedback '
         description='You can get feed-back from your client by creating your account and generating unique URL.'
-        className='pt-3 '
+        className='pt-3 w-full  '
       />
     </div>
     
     
     <footer className='text-center p-4 md:p-6 dark:bg-gray-900 border-t-gray-400 border-t-4'>
-      @2024 GetLine True Feedback By Akshay Dhobale . All rights reserved 
+      @2024 TimeLine True Feedback By Akshay Dhobale . All rights reserved 
     </footer>
    
     </>

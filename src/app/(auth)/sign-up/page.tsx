@@ -104,7 +104,7 @@ export default function SignUp() {
       <div className='w-full max-w-md p-8 space-y-8 bg-gray-400  rounded-lg shadow-md'>
         <div className='text-center'>
            <h1 className='text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 '>
-            Join Mystery Message GetLine
+            Join TimeLine Anonymous Feedback Platform
            </h1>
            <p className='mb-4'>
             Sign Up to start your anonymous adventure
